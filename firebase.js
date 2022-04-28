@@ -1,5 +1,21 @@
-import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+import {initializeApp, getApp, getApps} from "firebase/app";
+import {
+  GoogleAuthProvider,
+  getAuth,
+  signInWithPopup,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
+  signOut,
+} from "firebase/auth";
+import {
+  getFirestore,
+  query,
+  getDocs,
+  collection,
+  where,
+  addDoc,
+} from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBtgSkOL6NtFRQk_EZ_fzr_3A_E2_wPGQU",
@@ -11,6 +27,8 @@ const firebaseConfig = {
   };
 
   const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
   const db = getFirestore(app);
-
-  export {app, db};
+  const googleProvider = new GoogleAuthProvider();
+  
+  export {app, auth , db, googleProvider};
